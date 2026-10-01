@@ -110,55 +110,33 @@ function nickname(students) {
 // subject function to ensure all students has his/her subjects
 function subject(students) {
     for (let i = 0; i < students.length; i++) {
+        let mathScore = Math.floor(Math.random() * 56) + 45;
+        let engScore = Math.floor(Math.random() * 56) + 45;
+        let coreScore = Math.floor(Math.random() * 56) + 45;
+
         if (students[i].className === "BFL-WEB2-BEG") {
-            students[i].subject = `Maths: ${Math.floor(Math.random() * (100 - 45 + 1)) + 45}, English:${Math.floor(Math.random() * (100 - 45 + 1)) + 45}, Javascript: ${Math.floor(Math.random() * (100 - 45 + 1)) + 45}`
+            students[i].subject = { Maths: mathScore, English: engScore, Javascript: coreScore };
+        } else if (students[i].className === "BFL-WEB2-INT") {
+            students[i].subject = { Maths: mathScore, English: engScore, React: coreScore };
+        } else if (students[i].className === "BFL-WEB2-ADV") {
+            students[i].subject = { Maths: mathScore, English: engScore, NodeJS: coreScore };
         }
-        else if (students[i].className === "BFL-WEB2-INT") {
-            students[i].subject = `Maths: ${Math.floor(Math.random() * (100 - 45 + 1)) + 45}, English:${Math.floor(Math.random() * (100 - 45 + 1)) + 45}, React: ${Math.floor(Math.random() * (100 - 45 + 1)) + 45}`
-            //  console.log(students[i].subject)
-        }
-
-        else if (students[i].className === "BFL-WEB2-ADV") {
-            students[i].subject = `Maths: ${Math.floor(Math.random() * (100 - 45 + 1)) + 45}, English:${Math.floor(Math.random() * (100 - 45 + 1)) + 45}, NodeJS: ${Math.floor(Math.random() * (100 - 45 + 1)) + 45}`
-            //  console.log(students[i].subject)
-        }
-
-        // console.log(students[i].subject)
-        // console.log(students[i].subject)
-        // console.log(students[i].subject)
     }
 
     return students
 
-
 }
 
 function matNum(students) {
+    let begCount = 1, intCount = 1, advCount = 1;
 
     for (let i = 0; i < students.length; i++) {
-        // if (students[i].className === "BFL-WEB2-BEG") {
-        //     students[i].matricNumber = `2026/BFL/BEG/00${Math.floor(Math.random() * (3 - 1 + 1)) + 1}`
-        // }
-        // else if (students[i].className === "BFL-WEB2-INT") {
-        //     students[i].matricNumber = `2026/BFL/INT/00${Math.floor(Math.random() * (4 - 1 + 1)) + 1}`
-        // }
-        // else if (students[i].className === "BFL-WEB2-ADV") {
-        //     students[i].matricNumber = `2026/BFL/ADV/00${Math.floor(Math.random() * (3 - 1 + 1)) + 1}`
-        // }
-        let number;
         if (students[i].className === "BFL-WEB2-BEG") {
-            number = `2026/BFL/BEG/00${Math.floor(Math.random() * (3 - 1 + 1)) + 1}`
-            for (let j = 0; j < students.length; j++) {
-                if (number === students[j].matricNumber) {
-                    
-                }
-            }
-        }
-        else if (students[i].className === "BFL-WEB2-INT") {
-            students[i].matricNumber = `2026/BFL/INT/00${Math.floor(Math.random() * (4 - 1 + 1)) + 1}`
-        }
-        else if (students[i].className === "BFL-WEB2-ADV") {
-            students[i].matricNumber = `2026/BFL/ADV/00${Math.floor(Math.random() * (3 - 1 + 1)) + 1}`
+            students[i].matricNumber = `2026/BFL/BEG/00${begCount++}`;
+        } else if (students[i].className === "BFL-WEB2-INT") {
+            students[i].matricNumber = `2026/BFL/INT/00${intCount++}`;
+        } else if (students[i].className === "BFL-WEB2-ADV") {
+            students[i].matricNumber = `2026/BFL/ADV/00${advCount++}`;
         }
     }
 
@@ -170,14 +148,14 @@ function matNum(students) {
 function attendance(students) {
 
     let present = [true, false];
-    let attendance = 0;
 
     for (let i = 0; i < students.length; i++) {
+        let attendance = 0;
 
         students[i].attendance = { mon: present[Math.floor(Math.random() * present.length)], tue: present[Math.floor(Math.random() * present.length)], wed: present[Math.floor(Math.random() * present.length)], thur: present[Math.floor(Math.random() * present.length)], friday: present[Math.floor(Math.random() * present.length)], }
 
 
-        days = Object.keys(students[i].attendance)
+        let days = Object.keys(students[i].attendance)
         // console.log(days)
         for (let j = 0; j < days.length; j++) {
 
@@ -206,28 +184,17 @@ function attendance(students) {
     return students
 }
 
-
-// // matric_number function to ensure all students has a matric number
-// function matricNumber(students) {
-
-// }
-
-// // attendance function to get all attendance of students 
-// function attendance(students) {
-
-// }
-
-// itterate(students)
-// console.log("Grading:", grade(students))
+itterate(students)
+console.log("Grading:", grade(students))
 // // console.log("ClassName:", classes(students))
-// console.log("SurnName: ", fullname(students))
+console.log("SurnName: ", fullname(students))
 
-// console.log("NickName: ", nickname(students))
+console.log("NickName: ", nickname(students))
 
-// console.log("\nSUBJECTS: ", subject(students))
+console.log("\nSUBJECTS: ", subject(students))
 
 console.log("\nMATRIC NUMBER: ", matNum(students))
 
-// console.log("ATTENDANCE: ", attendance(students))
+console.log("ATTENDANCE: ", attendance(students))
 
-// console.log(students)
+console.log(students)
